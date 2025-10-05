@@ -1,4 +1,4 @@
-# CUNY-Resource-Hub-CRH-
+# CUNY-Resource-Hub-CRH
 🏛️ CUNY Resource Hub (CRH)
 All CUNY Resources, One Click Away.
 
