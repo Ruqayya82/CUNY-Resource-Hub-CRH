@@ -1,6 +1,7 @@
 # CUNY-Resource-Hub-CRH-
 🏛️ CUNY Resource Hub (CRH)
 All CUNY Resources, One Click Away.
+
 🌟 Overview
 
 The CUNY Resource Hub (CRH) is a unified web platform designed to make it easier for CUNY students to find and access support services across all campuses.
@@ -38,6 +39,7 @@ Organizes them by campus, category, and type of service
 Enables search, filtering, and quick navigation to official links
 
 ⚙️ Tech Stack
+
 Frontend: HTML, CSS, JavaScript, Bootstrap
 Backend: Python (Flask)
 Database: MariaDB / PostgreSQL
@@ -47,9 +49,13 @@ Tools: VS Code, Browser, Python Connector (mysql-connector-python or psycopg2)
 🧠 Features
 
 ✅ Search by campus, resource type, or keyword
+
 ✅ Centralized resource directory for all CUNY schools
+
 ✅ Responsive and mobile-friendly User Interface
+
 ✅ Database-backed design for scalability
+
 ✅ Simple, intuitive navigation for students
 
 🤝 Contributors
