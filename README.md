@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # CUNY-Resource-Hub-CRH-
+=======
+# CUNY-Resource-Hub-CRH
+>>>>>>> 0a18b3e19a3b854de7bf6a491b3901517492a28e
 🏛️ CUNY Resource Hub (CRH)
 All CUNY Resources, One Click Away.
 
