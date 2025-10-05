@@ -61,5 +61,7 @@ Tools: VS Code, Browser, Python Connector (mysql-connector-python or psycopg2)
 🤝 Contributors
 
 Project Lead: Ruqayya 
+
 Course: CISC 4900, CTP Data Science
+
 Institutions: CUNY Brooklyn College, CUNY Tech Prep
