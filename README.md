@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# CUNY-Resource-Hub-CRH-
-=======
 # CUNY-Resource-Hub-CRH
->>>>>>> 0a18b3e19a3b854de7bf6a491b3901517492a28e
 🏛️ CUNY Resource Hub (CRH)
 All CUNY Resources, One Click Away.
 
@@ -69,3 +65,20 @@ Project Lead: Ruqayya
 Course: CISC 4900, CTP Data Science
 
 Institutions: CUNY Brooklyn College, CUNY Tech Prep
+
+🚀 Run the App Locally
+
+This app is not yet deployed, but you can run it locally by following these steps:
+
+# Clone the repository
+git clone https://github.com/Ruqayya82/CUNY-Resource-Hub-CRH.git
+cd CUNY-Resource-Hub-CRH
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the app
+python app.py       
+
+# Access the app in browser
+http://127.0.0.1:5000
