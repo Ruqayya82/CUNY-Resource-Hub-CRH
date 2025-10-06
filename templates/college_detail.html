@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}{{ college }} - CUNY Resource Hub{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ college }}</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="text-center mb-4">
+    <div class="college-logo-header mb-3">
+        <img src="{{ url_for('static', filename='images/' + get_college_logo(college)) }}" 
+             alt="{{ college }} Logo" 
+             class="college-logo-large">
+    </div>
+    <h1 class="display-5 fw-bold">{{ college }}</h1>
+    <p class="lead text-muted">Available Resources</p>
+</div>
+
+<!-- Search Bar -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="GET" id="searchForm">
+            <div class="row g-3">
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="searchQuery" name="q" 
+                           placeholder="Search resources by keyword..." 
+                           value="{{ request.args.get('q', '') }}">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-search"></i> Search
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <a href="{{ url_for('college_detail', college_name=college) }}" class="btn btn-outline-secondary w-100">
+                        Clear
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Resources List -->
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% set search_query = request.args.get('q', '').lower() %}
+    {% set filtered_resources = [] %}
+    
+    {% for resource in resources %}
+        {% if not search_query or search_query in resource.name.lower() or search_query in resource.description.lower() or search_query in resource.category.lower() %}
+            {% set _ = filtered_resources.append(resource) %}
+        {% endif %}
+    {% endfor %}
+    
+    {% for resource in filtered_resources %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">{{ resource.name }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ resource.description }}</p>
+                <div class="mb-2">
+                    <span class="badge bg-info text-dark">{{ resource.category }}</span>
+                </div>
+                {% if resource.contact_info %}
+                <p class="card-text">
+                    <small class="text-muted">
+                        <i class="bi bi-envelope"></i> {{ resource.contact_info }}
+                    </small>
+                </p>
+                {% endif %}
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="{{ resource.url }}" target="_blank" class="btn btn-outline-primary btn-sm w-100">
+                    <i class="bi bi-box-arrow-up-right"></i> Visit Resource
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    {% if filtered_resources|length == 0 %}
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <h5>No resources found</h5>
+            <p>Try adjusting your search keywords or <a href="{{ url_for('college_detail', college_name=college) }}">view all resources</a>.</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% if filtered_resources|length > 0 %}
+<div class="mt-4 text-center text-muted">
+    <p>Showing {{ filtered_resources|length }} of {{ resources|length }} resources</p>
+</div>
+{% endif %}
+{% endblock %}

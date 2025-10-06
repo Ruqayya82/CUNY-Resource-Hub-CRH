@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ resource.name }} - CUNY Resource Hub{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+                <li class="breadcrumb-item active">{{ resource.name }}</li>
+            </ol>
+        </nav>
+
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">{{ resource.name }}</h1>
+                <div class="mb-3">
+                    <span class="badge bg-primary me-2">{{ resource.campus }}</span>
+                    <span class="badge bg-secondary">{{ resource.category }}</span>
+                </div>
+                <p class="card-text lead">{{ resource.description }}</p>
+
+                {% if resource.contact_info %}
+                <div class="mb-3">
+                    <h5>Contact Information</h5>
+                    <p>{{ resource.contact_info }}</p>
+                </div>
+                {% endif %}
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="{{ resource.url }}" class="btn btn-primary btn-lg" target="_blank">
+                        Visit Resource Website
+                    </a>
+                    <a href="{{ url_for('search') }}" class="btn btn-outline-secondary">
+                        Back to Search
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

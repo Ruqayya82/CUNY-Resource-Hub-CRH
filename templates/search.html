@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Search - CUNY Resource Hub{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <h2 class="mb-4">Search Resources</h2>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <form action="{{ url_for('search') }}" method="GET" class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="q" placeholder="Search by name or description..." value="{{ query }}">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="campus">
+                            <option value="">All Campuses</option>
+                            <option value="Brooklyn College" {% if campus == 'Brooklyn College' %}selected{% endif %}>Brooklyn College</option>
+                            <option value="City College" {% if campus == 'City College' %}selected{% endif %}>City College</option>
+                            <option value="Hunter College" {% if campus == 'Hunter College' %}selected{% endif %}>Hunter College</option>
+                            <option value="Queens College" {% if campus == 'Queens College' %}selected{% endif %}>Queens College</option>
+                            <!-- Add more campuses as needed -->
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="category">
+                            <option value="">All Categories</option>
+                            <option value="Academic" {% if category == 'Academic' %}selected{% endif %}>Academic</option>
+                            <option value="Financial" {% if category == 'Financial' %}selected{% endif %}>Financial</option>
+                            <option value="Wellness" {% if category == 'Wellness' %}selected{% endif %}>Wellness</option>
+                            <option value="Career" {% if category == 'Career' %}selected{% endif %}>Career</option>
+                            <!-- Add more categories as needed -->
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <h5>Search Results {% if resources %}({{ resources|length }} found){% endif %}</h5>
+        </div>
+
+        <div class="row">
+            {% for resource in resources %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ resource.name }}</h5>
+                        <p class="card-text">{{ resource.description[:200] }}...</p>
+                        <div class="mb-2">
+                            <span class="badge bg-primary">{{ resource.campus }}</span>
+                            <span class="badge bg-secondary">{{ resource.category }}</span>
+                        </div>
+                        {% if resource.contact_info %}
+                        <p class="text-muted small">Contact: {{ resource.contact_info }}</p>
+                        {% endif %}
+                        <a href="{{ resource.url }}" class="btn btn-outline-primary btn-sm" target="_blank">Visit Resource</a>
+                        <a href="{{ url_for('resource_detail', resource_id=resource.id) }}" class="btn btn-outline-secondary btn-sm">Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if not resources %}
+        <div class="text-center py-5">
+            <p class="text-muted">No resources found matching your search criteria.</p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary">View All Resources</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
