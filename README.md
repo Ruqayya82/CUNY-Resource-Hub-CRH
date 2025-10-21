@@ -72,6 +72,7 @@ This app is not yet deployed, but you can run it locally by following these step
 
 # Clone the repository
 git clone https://github.com/Ruqayya82/CUNY-Resource-Hub-CRH.git
+
 cd CUNY-Resource-Hub-CRH
 
 # Install dependencies
@@ -82,3 +83,4 @@ python app.py
 
 # Access the app in browser
 http://127.0.0.1:5000
+
